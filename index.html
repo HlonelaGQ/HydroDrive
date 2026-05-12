@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HydroDrive - Hydrogen Car Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">⚛️ HydroDrive</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="simulator.html" class="nav-link">Simulator</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page home-page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">HydroDrive</h1>
+                <p class="hero-subtitle">The Future of Hydrogen Vehicles</p>
+                <p class="hero-description">Build and test your own hydrogen car. See how hydrogen fuel cells will replace petrol and diesel.</p>
+                <a href="simulator.html" class="btn btn-primary">Start Building</a>
+            </div>
+            <div class="hero-image">
+                <svg viewBox="0 0 300 200" class="car-svg">
+                    <!-- Car Body -->
+                    <ellipse cx="150" cy="140" rx="80" ry="40" fill="#00d4ff" opacity="0.9"/>
+                    <!-- Car Top -->
+                    <rect x="80" y="90" width="140" height="50" rx="20" fill="#00d4ff"/>
+                    <!-- Windows -->
+                    <rect x="100" y="100" width="35" height="25" fill="#1a1a2e" opacity="0.7" rx="3"/>
+                    <rect x="165" y="100" width="35" height="25" fill="#1a1a2e" opacity="0.7" rx="3"/>
+                    <!-- Wheels -->
+                    <circle cx="100" cy="170" r="20" fill="#16213e"/>
+                    <circle cx="200" cy="170" r="20" fill="#16213e"/>
+                    <!-- Wheel Details -->
+                    <circle cx="100" cy="170" r="12" fill="none" stroke="#00d4ff" stroke-width="2"/>
+                    <circle cx="200" cy="170" r="12" fill="none" stroke="#00d4ff" stroke-width="2"/>
+                    <!-- H2 Symbol (Hydrogen) -->
+                    <text x="150" y="145" text-anchor="middle" font-size="28" fill="#fff" font-weight="bold">H₂</text>
+                    <!-- Glow effect -->
+                    <ellipse cx="150" cy="140" rx="82" ry="42" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="about">
+            <h2 class="section-title">Why Hydrogen Cars?</h2>
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Zero Emissions</h3>
+                    <p>Hydrogen cars only produce water vapor. No CO2, no pollution. Just clean energy for our planet.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Hydrogen Efficiency</h3>
+                    <p>Converts 60-70% of energy into motion. Much better than petrol (20-30%) and competitive with electric cars.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Future Technology</h3>
+                    <p>Hydrogen fuel cells are the next step in transportation. Already used by Toyota, Hyundai, and BMW.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works">
+            <h2 class="section-title">How Hydrogen Cars Work</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Hydrogen Storage</h3>
+                    <p>Hydrogen gas (H₂) is stored in a high-pressure tank (like petrol in a normal car)</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Fuel Cell</h3>
+                    <p>Hydrogen passes through a fuel cell that converts it into electricity</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Electric Motor</h3>
+                    <p>The electricity powers an electric motor that drives the wheels</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Water Only</h3>
+                    <p>The only emission is water vapor. Clean and safe for the environment</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 HydroDrive. Powered by hydrogen, built for the future.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
