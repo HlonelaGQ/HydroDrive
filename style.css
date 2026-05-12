@@ -343,23 +343,39 @@ body {
     line-height: 1.8;
 }
 
+/* ===== BUILDER AND PREVIEW LAYOUT ===== */
+.builder-and-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
 /* ===== BUILDER SECTION (SIMULATOR PAGE) ===== */
 .builder-section {
-    padding: 60px 20px;
+    padding: 20px 0;
+}
+
+.builder-section .section-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.builder-section .section-description {
+    margin-bottom: 20px;
+    font-size: 16px;
 }
 
 .builder-panel {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 15px;
-    padding: 40px;
-    max-width: 500px;
-    margin: 0 auto;
+    padding: 30px;
     box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
 }
 
 .control-group {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .control-group label {
@@ -455,16 +471,70 @@ body {
     font-style: italic;
 }
 
+/* ===== CAR PREVIEW SECTION ===== */
+.car-preview-section {
+    padding: 20px 0;
+}
+
+.car-preview-section h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.car-model-container {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+}
+
+.car-model {
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+}
+
+.car-info-display {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: var(--text-gray);
+    font-weight: 500;
+}
+
+.info-value {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 16px;
+}
+
 /* ===== PREVIEW SECTION ===== */
 .preview-section {
-    margin-top: 40px;
     padding: 40px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 15px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
 }
 
 .preview-section h3 {
@@ -704,6 +774,12 @@ body {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+    .builder-and-preview {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -742,11 +818,11 @@ body {
     }
 
     .builder-panel {
-        max-width: 100%;
+        padding: 20px;
     }
 
     .preview-section {
-        max-width: 100%;
+        padding: 20px;
     }
 
     .nav-menu.active {
@@ -776,10 +852,14 @@ body {
     }
 
     .builder-panel {
-        padding: 20px;
+        padding: 15px;
     }
 
     .result-card {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    .builder-and-preview {
+        gap: 15px;
     }
 }

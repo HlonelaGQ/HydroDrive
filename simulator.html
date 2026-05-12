@@ -27,57 +27,152 @@
     <!-- SIMULATOR PAGE -->
     <div id="simulator-page" class="page simulator-page active">
         <div class="page-container">
-            <!-- Builder Panel -->
-            <section class="builder-section">
-                <h2 class="section-title">Build Your Hydrogen Car</h2>
-                <p class="section-description">Customize your car and see how it performs</p>
+            <!-- Builder and Car Preview Layout -->
+            <div class="builder-and-preview">
+                <!-- Builder Panel (Left) -->
+                <section class="builder-section">
+                    <h2 class="section-title">Build Your Hydrogen Car</h2>
+                    <p class="section-description">Customize your car and see how it performs</p>
 
-                <div class="builder-panel">
-                    <!-- Car Type Selection -->
-                    <div class="control-group">
-                        <label for="carType">Car Type</label>
-                        <select id="carType" class="input-select">
-                            <option value="sedan">Sedan (lighter, faster)</option>
-                            <option value="suv">SUV (heavier, more power)</option>
-                            <option value="sports">Sports Car (lightest, most speed)</option>
-                        </select>
-                        <p class="input-info">Different car types have different weights and power needs</p>
-                    </div>
-
-                    <!-- Hydrogen Tank Size -->
-                    <div class="control-group">
-                        <label for="tankSize">Hydrogen Tank Size</label>
-                        <div class="slider-container">
-                            <input type="range" id="tankSize" min="30" max="100" value="60" class="input-slider">
-                            <span class="slider-value" id="tankValue">60 kg</span>
+                    <div class="builder-panel">
+                        <!-- Car Type Selection -->
+                        <div class="control-group">
+                            <label for="carType">Car Type</label>
+                            <select id="carType" class="input-select">
+                                <option value="sedan">Sedan (lighter, faster)</option>
+                                <option value="suv">SUV (heavier, more power)</option>
+                                <option value="sports">Sports Car (lightest, most speed)</option>
+                            </select>
+                            <p class="input-info">Different car types have different weights and power needs</p>
                         </div>
-                        <p class="input-info">More hydrogen = longer range. Normal cars have 60-100 kg</p>
-                    </div>
 
-                    <!-- Vehicle Weight -->
-                    <div class="control-group">
-                        <label for="weight">Vehicle Weight</label>
-                        <div class="slider-container">
-                            <input type="range" id="weight" min="1000" max="2500" step="100" value="1500" class="input-slider">
-                            <span class="slider-value" id="weightValue">1500 kg</span>
+                        <!-- Hydrogen Tank Size -->
+                        <div class="control-group">
+                            <label for="tankSize">Hydrogen Tank Size</label>
+                            <div class="slider-container">
+                                <input type="range" id="tankSize" min="30" max="100" value="60" class="input-slider">
+                                <span class="slider-value" id="tankValue">60 kg</span>
+                            </div>
+                            <p class="input-info">More hydrogen = longer range. Normal cars have 60-100 kg</p>
                         </div>
-                        <p class="input-info">Lighter cars are faster. Heavier cars need more power</p>
-                    </div>
 
-                    <!-- Motor Power -->
-                    <div class="control-group">
-                        <label for="motorPower">Motor Power</label>
-                        <div class="slider-container">
-                            <input type="range" id="motorPower" min="100" max="300" step="10" value="150" class="input-slider">
-                            <span class="slider-value" id="motorValue">150 kW</span>
+                        <!-- Vehicle Weight -->
+                        <div class="control-group">
+                            <label for="weight">Vehicle Weight</label>
+                            <div class="slider-container">
+                                <input type="range" id="weight" min="1000" max="2500" step="100" value="1500" class="input-slider">
+                                <span class="slider-value" id="weightValue">1500 kg</span>
+                            </div>
+                            <p class="input-info">Lighter cars are faster. Heavier cars need more power</p>
                         </div>
-                        <p class="input-info">More power = faster acceleration. 100-300 kW is normal range</p>
-                    </div>
 
-                    <!-- Run Simulation Button -->
-                    <button class="btn btn-primary btn-large" id="runSimBtn">Run Simulation</button>
-                </div>
-            </section>
+                        <!-- Motor Power -->
+                        <div class="control-group">
+                            <label for="motorPower">Motor Power</label>
+                            <div class="slider-container">
+                                <input type="range" id="motorPower" min="100" max="300" step="10" value="150" class="input-slider">
+                                <span class="slider-value" id="motorValue">150 kW</span>
+                            </div>
+                            <p class="input-info">More power = faster acceleration. 100-300 kW is normal range</p>
+                        </div>
+
+                        <!-- Run Simulation Button -->
+                        <button class="btn btn-primary btn-large" id="runSimBtn">Run Simulation</button>
+                    </div>
+                </section>
+
+                <!-- Car Model Preview (Right) -->
+                <section class="car-preview-section">
+                    <h3>Live Car Preview</h3>
+                    <div class="car-model-container">
+                        <svg id="carModel" class="car-model" viewBox="0 0 400 300">
+                            <!-- Background -->
+                            <defs>
+                                <linearGradient id="carGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.9" />
+                                    <stop offset="100%" style="stop-color:#0099cc;stop-opacity:0.7" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Ground/Track -->
+                            <rect x="0" y="240" width="400" height="60" fill="#1a3a2e" opacity="0.3"/>
+                            <line x1="0" y1="240" x2="400" y2="240" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+                            
+                            <!-- Car Group -->
+                            <g id="carGroup" transform="translate(50, 150)">
+                                <!-- Car Body -->
+                                <ellipse id="carBody" cx="120" cy="50" rx="70" ry="30" fill="url(#carGradient)" opacity="0.95"/>
+                                
+                                <!-- Car Top/Cabin -->
+                                <rect id="carTop" x="70" y="20" width="100" height="35" rx="15" fill="url(#carGradient)"/>
+                                
+                                <!-- Windows -->
+                                <rect id="window1" x="85" y="25" width="25" height="20" fill="#1a1a2e" opacity="0.7" rx="2"/>
+                                <rect id="window2" x="135" y="25" width="25" height="20" fill="#1a1a2e" opacity="0.7" rx="2"/>
+                                
+                                <!-- Wheels -->
+                                <g id="wheel1">
+                                    <circle cx="65" cy="75" r="16" fill="#16213e"/>
+                                    <circle cx="65" cy="75" r="10" fill="none" stroke="#00d4ff" stroke-width="2"/>
+                                    <circle cx="65" cy="75" r="4" fill="#00d4ff" opacity="0.6"/>
+                                </g>
+                                <g id="wheel2">
+                                    <circle cx="175" cy="75" r="16" fill="#16213e"/>
+                                    <circle cx="175" cy="75" r="10" fill="none" stroke="#00d4ff" stroke-width="2"/>
+                                    <circle cx="175" cy="75" r="4" fill="#00d4ff" opacity="0.6"/>
+                                </g>
+                                
+                                <!-- Hydrogen Symbol -->
+                                <text id="hydrogenSymbol" x="120" y="60" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold">H₂</text>
+                                
+                                <!-- Glow effect -->
+                                <ellipse id="carGlow" cx="120" cy="50" rx="72" ry="32" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+                            </g>
+                            
+                            <!-- Performance Indicators -->
+                            <g id="perfBars" transform="translate(10, 10)">
+                                <!-- Power Bar -->
+                                <text x="0" y="0" font-size="12" fill="#00d4ff" font-weight="bold">Power</text>
+                                <rect x="0" y="8" width="110" height="10" fill="none" stroke="#00d4ff" stroke-width="1" rx="5"/>
+                                <rect id="powerBar" x="0" y="8" width="55" height="10" fill="#00d4ff" rx="5"/>
+                                <text id="powerText" x="115" y="16" font-size="10" fill="#00d4ff">150 kW</text>
+                                
+                                <!-- Weight Bar -->
+                                <text x="0" y="35" font-size="12" fill="#00d4ff" font-weight="bold">Weight</text>
+                                <rect x="0" y="43" width="110" height="10" fill="none" stroke="#00d4ff" stroke-width="1" rx="5"/>
+                                <rect id="weightBar" x="0" y="43" width="55" height="10" fill="#ff6b6b" rx="5"/>
+                                <text id="weightText" x="115" y="51" font-size="10" fill="#ff6b6b">1500 kg</text>
+                                
+                                <!-- Tank Bar -->
+                                <text x="220" y="0" font-size="12" fill="#00d4ff" font-weight="bold">Tank</text>
+                                <rect x="220" y="8" width="110" height="10" fill="none" stroke="#00d4ff" stroke-width="1" rx="5"/>
+                                <rect id="tankBar" x="220" y="8" width="55" height="10" fill="#51cf66" rx="5"/>
+                                <text id="tankText" x="335" y="16" font-size="10" fill="#51cf66">60 kg</text>
+                            </g>
+                        </svg>
+                    </div>
+                    
+                    <!-- Car Info Display -->
+                    <div class="car-info-display">
+                        <div class="info-row">
+                            <span class="info-label">Car Type:</span>
+                            <span class="info-value" id="displayCarType">Sedan</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Total Weight:</span>
+                            <span class="info-value" id="displayWeight">1500 kg</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Motor Power:</span>
+                            <span class="info-value" id="displayPower">150 kW</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Tank Size:</span>
+                            <span class="info-value" id="displayTank">60 kg</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
             <!-- Live Stats Preview -->
             <section class="preview-section">

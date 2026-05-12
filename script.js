@@ -5,19 +5,28 @@ const carTypes = {
         name: 'Sedan',
         baseWeight: 1500,
         maxPower: 200,
-        acceleration: 10
+        acceleration: 10,
+        bodyWidth: 140,
+        bodyHeight: 60,
+        topHeight: 70
     },
     suv: {
         name: 'SUV',
         baseWeight: 2000,
         maxPower: 250,
-        acceleration: 8
+        acceleration: 8,
+        bodyWidth: 160,
+        bodyHeight: 70,
+        topHeight: 90
     },
     sports: {
         name: 'Sports Car',
         baseWeight: 1200,
         maxPower: 300,
-        acceleration: 12
+        acceleration: 12,
+        bodyWidth: 130,
+        bodyHeight: 50,
+        topHeight: 55
     }
 };
 
@@ -41,18 +50,21 @@ document.getElementById('tankSize')?.addEventListener('input', function() {
     document.getElementById('tankValue').textContent = this.value + ' kg';
     simulationData.tankSize = parseInt(this.value);
     updatePreview();
+    updateCarModel();
 });
 
 document.getElementById('weight')?.addEventListener('input', function() {
     document.getElementById('weightValue').textContent = this.value + ' kg';
     simulationData.weight = parseInt(this.value);
     updatePreview();
+    updateCarModel();
 });
 
 document.getElementById('motorPower')?.addEventListener('input', function() {
     document.getElementById('motorValue').textContent = this.value + ' kW';
     simulationData.motorPower = parseInt(this.value);
     updatePreview();
+    updateCarModel();
 });
 
 document.getElementById('carType')?.addEventListener('change', function() {
@@ -65,6 +77,7 @@ document.getElementById('carType')?.addEventListener('change', function() {
     simulationData.weight = carType.baseWeight;
     
     updatePreview();
+    updateCarModel();
 });
 
 // ===== CALCULATION FUNCTIONS =====
@@ -124,6 +137,59 @@ function calculateCO2Savings(range) {
     const totalCO2Saved = yearlyKm * co2PerKmPetrol; // grams of CO2 saved
     
     return (totalCO2Saved / 1000).toFixed(2); // convert to tons
+}
+
+// ===== UPDATE CAR MODEL =====
+// This updates the car visual when specifications change
+function updateCarModel() {
+    const carType = carTypes[simulationData.carType];
+    
+    // Update display info
+    document.getElementById('displayCarType').textContent = carType.name;
+    document.getElementById('displayWeight').textContent = simulationData.weight + ' kg';
+    document.getElementById('displayPower').textContent = simulationData.motorPower + ' kW';
+    document.getElementById('displayTank').textContent = simulationData.tankSize + ' kg';
+    
+    // Update car body size based on type
+    const carBody = document.getElementById('carBody');
+    const carTop = document.getElementById('carTop');
+    if (carBody && carTop) {
+        carBody.setAttribute('rx', carType.bodyWidth / 2);
+        carTop.setAttribute('width', carType.bodyWidth);
+        carTop.setAttribute('height', carType.topHeight / 2);
+    }
+    
+    // Update power bar (0-300 kW range)
+    const powerBar = document.getElementById('powerBar');
+    const powerPercent = (simulationData.motorPower / 300) * 110;
+    if (powerBar) powerBar.setAttribute('width', powerPercent);
+    document.getElementById('powerText').textContent = simulationData.motorPower + ' kW';
+    
+    // Update weight bar (1000-2500 kg range)
+    const weightBar = document.getElementById('weightBar');
+    const weightPercent = ((simulationData.weight - 1000) / 1500) * 110;
+    if (weightBar) weightBar.setAttribute('width', weightPercent);
+    document.getElementById('weightText').textContent = simulationData.weight + ' kg';
+    
+    // Update tank bar (30-100 kg range)
+    const tankBar = document.getElementById('tankBar');
+    const tankPercent = ((simulationData.tankSize - 30) / 70) * 110;
+    if (tankBar) tankBar.setAttribute('width', tankPercent);
+    document.getElementById('tankText').textContent = simulationData.tankSize + ' kg';
+    
+    // Add glow effect based on power
+    const carGlow = document.getElementById('carGlow');
+    if (carGlow) {
+        const glowIntensity = 0.3 + (simulationData.motorPower / 300) * 0.7;
+        carGlow.setAttribute('opacity', glowIntensity);
+    }
+    
+    // Subtle scale change based on weight
+    const carGroup = document.getElementById('carGroup');
+    if (carGroup) {
+        const scale = 0.9 + (simulationData.weight / 2500) * 0.15;
+        carGroup.setAttribute('transform', `translate(50, 150) scale(${scale})`);
+    }
 }
 
 // ===== UPDATE PREVIEW FUNCTION =====
@@ -342,6 +408,7 @@ window.addEventListener('load', function() {
     else if (document.getElementById('simulator-page')) {
         showPage('simulator');
         updatePreview();
+        updateCarModel();
     }
 });
 
